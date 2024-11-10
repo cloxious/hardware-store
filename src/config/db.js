@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
+require("dotenv").config();
 
 const connectDB = async () => {
   try {
-    await mongoose.connect("mongodb://localhost:27017/hardware_store");
+    await mongoose.connect(process.env.MONGODB_URI);
     console.log("Connection to database established");
   } catch (error) {
     console.error("Connection to database failed");

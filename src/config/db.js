@@ -1,8 +1,12 @@
 const mongoose = require("mongoose");
 
-const db = mongoose
-  .connect("mongodb://localhost:27017/hardware_store")
-  .then(() => console.log("Connection to database established"))
-  .catch((err) => console.error("Connection to database failed:", err));
-
-module.exports = db;
+const connectDB = async () => {
+  try {
+    await mongoose.connect("mongodb://localhost:27017/hardware_store");
+    console.log("Connection to database established");
+  } catch (error) {
+    console.error("Connection to database failed");
+    console.error(error);
+    process.exit(1);
+  }
+};

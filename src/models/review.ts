@@ -1,12 +1,12 @@
 import mongoose from "mongoose";
 
 export default mongoose.model(
-    "Order",
+    "Review",
     new mongoose.Schema({
         user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
-        products: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product", required: true }],
-        total: { type: Number, required: true },
-        status: { type: String, required: true, enum: ["pending", "completed"], default: "pending", trim: true },
+        product: { type: mongoose.Schema.Types.ObjectId, ref: "Product", required: true },
+        rating: { type: Number, required: true, min: 1, max: 5 },
+        comment: { type: String, required: true, trim: true },
         created_at: { type: Date, default: Date.now },
         updated_at: { type: Date, default: Date.now },
     })
